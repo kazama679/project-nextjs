@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaTelegram } from 'react-icons/fa';
 import { TiSocialGooglePlus } from 'react-icons/ti';
 import { useRouter } from 'next/navigation'; 
@@ -16,16 +17,26 @@ type User = {
     address: string;
     created_at: string;
     updated_at: string;
+    cart: Array<any>;
 };
 
-export default function Login() {
+const Login = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [messLogin, setMessLogin] = useState<boolean>(false);
     const [messLogin2, setMessLogin2] = useState<boolean>(false);
     const [messLogin3, setMessLogin3] = useState<boolean>(false);
     const [messLogin4, setMessLogin4] = useState<boolean>(false);
+    const [users, setUsers] = useState<User[]>([]); // Tạo state để lưu dữ liệu người dùng
     const router = useRouter(); // Hook để điều hướng trong Next.js
+
+    useEffect(() => {
+        // Lấy dữ liệu từ JSON server
+        fetch('http://localhost:8080/users')
+            .then(response => response.json())
+            .then(data => setUsers(data))
+            .catch(error => console.error('Error fetching users:', error));
+    }, []);
 
     // Lưu dữ liệu người dùng nhập email
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,32 +52,35 @@ export default function Login() {
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (email === '' || password === '') {
-            setMessLogin2(true); // Hiển thị thông báo nếu email hoặc mật khẩu để trống
+        if (email === '' || password === '') { // Check xem để trống không
+            setMessLogin2(true);
             setMessLogin(false);
             setMessLogin3(false);
             setMessLogin4(false);
         } else {
             const user = users.find((user) => user.email === email && user.password === password);
             if (user) {
-                if (!user.status) { // Kiểm tra nếu tài khoản bị chặn
-                    setMessLogin3(true); // Hiển thị thông báo tài khoản bị chặn
+                if (!user.status) { // Check tài khoản bị chặn không
+                    setMessLogin3(true); 
                     setMessLogin(false);
                     setMessLogin2(false);
                     setMessLogin4(false);
                 } else {
-                    setMessLogin4(true); // Đăng nhập thành công
+                    setMessLogin4(true);
                     setMessLogin(false);
                     setMessLogin2(false);
                     setMessLogin3(false);
-                    if (user.role) { // Kiểm tra vai trò của người dùng
-                        router.push('/admin/dashboard'); // Chuyển hướng đến trang quản trị
-                    } else {
-                        router.push('/'); // Chuyển hướng đến trang người dùng
+                    // Lưu thông tin người dùng vào localStorage dựa trên role
+                    if (user.role) { // Nếu là admin
+                        localStorage.setItem('admin', JSON.stringify(user));
+                        router.push('/admin/dashboard');
+                    } else { // Nếu là user
+                        localStorage.setItem('user', JSON.stringify(user));
+                        router.push('/home');
                     }
                 }
             } else {
-                setMessLogin(true); // Hiển thị thông báo sai email hoặc mật khẩu
+                setMessLogin(true);
                 setMessLogin2(false);
                 setMessLogin3(false);
                 setMessLogin4(false);
@@ -112,4 +126,6 @@ export default function Login() {
             </form>
         </div>
     );
-}
+};
+
+export default Login;

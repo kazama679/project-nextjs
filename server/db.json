@@ -3,29 +3,16 @@
     {
       "id": 23968779,
       "name": "Quang Nguyễn123",
-      "email": "123@gmail.com",
+      "email": "1@gmail.com",
       "status": true,
-      "password": "Teo123456",
+      "password": "1",
       "role": true,
+      "avatar":"https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
       "phone": "0349199812",
       "address": "Hà Nội",
       "created_at": "14/07/2024",
       "updated_at": "14/07/2024",
-      "cart": [
-        {
-          "id": 85277318,
-          "name": "Dell XPS 9530 15 inch 2023 Core i9-13900H RAM 32GB SSD 1TB OLED Touch RTX 4070",
-          "price": 19490000,
-          "stock": 51,
-          "category": "Laptop gaming",
-          "status": true,
-          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
-          "description": "Tình trạng: New 100%, Fullbox\nMàu: Platinum Silver\nCPU: Intel 13th Gen Core i9-13900H (14 Core, 20 Thread, 8-E-core 4.1GHz, 6-P-core 5.4GHz, 24MB Cache)\nRAM: 32GB DDR5 4800MHz\nStorage: 1TB M.2 PCIe NVMe SSD\nMàn hình: 15.6″ 3.5K (3456X2160) OLED InfinityEdge Touch Anti-reflective 400-Nit Display\nVGA: NVIDIA GeForce RTX 4070 8GB GDDR6\nCổng kết nối: 2x ThunderBolt 4, 1 USB 3.2 Gen 2 Type-C, 1x Khe SD, Jack 3.5mm\nTrọng lượng: Từ 1.86Kg",
-          "created_at": "16/07/2024",
-          "updated_at": "16/07/2024",
-          "quantity": 1
-        }
-      ]
+      "cart": []
     },
     {
       "id": 70982177,
@@ -33,7 +20,8 @@
       "email": "nxquang2k5@gmail.com",
       "status": true,
       "password": "Teo123456",
-      "role": true,
+      "role": false,
+      "avatar":"https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
       "phone": "0349199812",
       "address": "Đan Phượng",
       "created_at": "15/07/2024",
@@ -41,25 +29,13 @@
       "cart": []
     },
     {
-      "id": 81190502,
-      "name": "Quang123",
-      "email": "nxquang25@gmail.com",
-      "status": true,
-      "password": "Teo123456",
-      "role": true,
-      "phone": "0349199812",
-      "address": "Tân Triều",
-      "created_at": "16/07/2024",
-      "updated_at": "16/07/2024",
-      "cart": []
-    },
-    {
       "id": 47761830,
       "name": "Quang",
       "email": "1234@gmail.com",
-      "status": true,
+      "status": false,
       "password": "Teo123456",
-      "role": true,
+      "role": false,
+      "avatar":"https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
       "phone": "034998127",
       "address": "Hn",
       "created_at": "16/07/2024",

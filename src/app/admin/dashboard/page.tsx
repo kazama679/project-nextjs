@@ -1,16 +1,52 @@
-import React from 'react'
+"use client";
+
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { FaProductHunt } from 'react-icons/fa';
-import { IoIosLogOut, IoMdSearch } from 'react-icons/io';
+import { IoIosLogOut } from 'react-icons/io';
 import { MdCategory, MdDashboard, MdOutlineSettingsSuggest } from 'react-icons/md';
 import { PiUsersFill } from 'react-icons/pi';
 import { RiBillFill } from 'react-icons/ri';
 
-export default function page() {
+type Admin = {
+    id: number;
+    name: string;
+    email: string;
+    status: boolean;
+    role: boolean;
+    avatar: string;
+    phone: string;
+    address: string;
+    created_at: string;
+    updated_at: string;
+};
+
+export default function DashboardPage() {
+    const [admin, setAdmin] = useState<Admin | null>(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        const storedAdmin = localStorage.getItem('admin');
+        if (!storedAdmin) { // nếu chx đăng nhập thì đẩy về login
+            router.push('/user/login');
+        } else {
+            const adminData = JSON.parse(storedAdmin);
+            fetch(`http://localhost:8080/users/${adminData.id}`)
+                .then((response) => response.json())
+                .then((data) => setAdmin(data))
+                .catch((error) => console.error('Error fetching admin data:', error));
+        }
+    }, [router]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('admin');
+        router.push('/user/login')
+    };
+
     return (
         <div>
             {/* admin */}
             <div className="flex">
-                {/* Sidebar */}
                 <aside className="w-64 bg-gray-800 text-white min-h-screen p-5">
                     <h2 className="text-2xl mb-6">Rikkei Academy</h2>
                     <nav>
@@ -52,10 +88,13 @@ export default function page() {
                                 </a>
                             </li>
                             <li className="mt-auto">
-                                <a href="/admin/" className="flex items-center text-red-400 hover:text-red-600 px-4">
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center text-red-400 hover:text-red-600 px-4"
+                                >
                                     <IoIosLogOut className="mr-2 flex-shrink-0" />
                                     <span className="flex-grow">Log out</span>
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     </nav>
@@ -66,31 +105,20 @@ export default function page() {
                     <header className="flex justify-between items-center mb-6">
                         <h1 className="text-2xl font-bold">Dashboard</h1>
                         <div className="flex items-center space-x-6">
-                            <div className="relative">
-                                <img src="path/to/avatar.jpg" className="w-10 h-10 rounded-full" alt="Admin Avatar" />
-                            </div>
+                            {admin && (
+                                <div className="relative flex items-center justify-end">
+                                    <img src={admin.avatar || 'path/to/default-avatar.jpg'} className="w-10 h-10 rounded-full" alt="Admin Avatar" />
+                                    <span className="ml-2 text-gray-700">{admin.name}</span>
+                                </div>
+                            )}
                         </div>
                     </header>
                     <div className="bg-white p-6 rounded-lg shadow-lg">
-
-                        {/* tìm kiếm */}
-                        {/* <div className="flex justify-between mb-4">
-                            <button className="bg-blue-500 text-white px-4 py-2 rounded">+ Add Product</button>
-                            <select className="border px-4 py-2 rounded">
-                                <option>Sort by</option>
-                                <option value="name">Name</option>
-                                <option value="price">Price</option>
-                                <option value="created_at">Date</option>
-                            </select>
-                        </div> */}
-                        {/* end-tìm kiếm */}
-
-                        {/* thêm bảng dashboard ở đây */}
                         dashboard
                     </div>
                 </main>
             </div>
             {/* end-admin */}
         </div>
-    )
-}   
+    );
+}
