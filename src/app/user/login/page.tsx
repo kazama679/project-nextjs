@@ -4,21 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaTelegram } from 'react-icons/fa';
 import { TiSocialGooglePlus } from 'react-icons/ti';
 import { useRouter } from 'next/navigation'; 
-
-type User = {
-    id: number;
-    name: string;
-    email: string;
-    status: boolean;
-    password: string;
-    role: boolean;
-    avatar: string;
-    phone: string;
-    address: string;
-    created_at: string;
-    updated_at: string;
-    cart: Array<any>;
-};
+import { User } from '../../interface/user'
 
 const Login = () => {
     const [email, setEmail] = useState<string>('');
