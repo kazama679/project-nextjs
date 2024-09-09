@@ -6,15 +6,20 @@ import { IoIosLogOut } from 'react-icons/io';
 import { MdCategory, MdDashboard, MdOutlineSettingsSuggest } from 'react-icons/md';
 import { PiUsersFill } from 'react-icons/pi';
 import { RiBillFill } from 'react-icons/ri';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Sidebar: React.FC = () => {
   const router = useRouter();
+  const pathname = usePathname(); // Lấy đường dẫn hiện tại
 
   const handleLogout = () => {
     localStorage.removeItem('admin');
     router.push('/user/login');
   };
+
+  // Hàm để kiểm tra trang hiện tại có được chọn không
+  const isActive = (path: string) => pathname === path ? 'text-white' : 'text-gray-400';
 
   return (
     <aside className="w-64 bg-gray-800 text-white min-h-screen p-5">
@@ -22,40 +27,40 @@ const Sidebar: React.FC = () => {
       <nav>
         <ul className="space-y-4">
           <li>
-            <a href="/admin/dashboard" className="flex items-center px-4 text-gray-400 hover:text-white">
+            <Link href="/admin/dashboard" className={`flex items-center px-4 hover:text-white ${isActive('/admin/dashboard')}`}>
               <MdDashboard className="mr-2 flex-shrink-0" />
               <span className="flex-grow">Dashboard</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/admin/products" className="flex items-center hover:text-white px-4 text-gray-400">
+            <Link href="/admin/products" className={`flex items-center hover:text-white px-4 ${isActive('/admin/products')}`}>
               <FaProductHunt className="mr-2 flex-shrink-0" />
               <span className="flex-grow">Products</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/admin/orders" className="flex items-center text-gray-400 hover:text-white px-4">
+            <Link href="/admin/orders" className={`flex items-center hover:text-white px-4 ${isActive('/admin/orders')}`}>
               <RiBillFill className="mr-2 flex-shrink-0" />
               <span className="flex-grow">Orders</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/admin/customers" className="flex items-center text-gray-400 hover:text-white px-4">
+            <Link href="/admin/customers" className={`flex items-center hover:text-white px-4 ${isActive('/admin/customers')}`}>
               <PiUsersFill className="mr-2 flex-shrink-0" />
               <span className="flex-grow">Customers</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/admin/category" className="flex items-center text-gray-400 hover:text-white px-4">
+            <Link href="/admin/category" className={`flex items-center hover:text-white px-4 ${isActive('/admin/category')}`}>
               <MdCategory className="mr-2 flex-shrink-0" />
               <span className="flex-grow">Category</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/admin/setting" className="flex items-center text-gray-400 hover:text-white px-4">
+            <Link href="/admin/setting" className={`flex items-center hover:text-white px-4 ${isActive('/admin/setting')}`}>
               <MdOutlineSettingsSuggest className="mr-2 flex-shrink-0" />
               <span className="flex-grow">Settings</span>
-            </a>
+            </Link>
           </li>
           <li className="mt-auto">
             <button

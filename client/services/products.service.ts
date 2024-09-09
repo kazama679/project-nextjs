@@ -6,7 +6,7 @@ export const getProducts = async () => {
     return res.data
 }
 
-// hàm xóa thông tin products
+// hàm xóa thông tin product
 export const deleteProductAPI = async (id: number) => {
     await axios.delete(`http://localhost:8080/products/${id}`);
     return id; // Trả về id của sản phẩm đã xóa

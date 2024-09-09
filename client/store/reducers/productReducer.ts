@@ -24,13 +24,13 @@ const productReducer = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getAllProduct.pending, (state, action) => {
-                console.log('chờ call API');
+                console.log('Đang tải dữ liệu sản phẩm...');
             })
             .addCase(getAllProduct.fulfilled, (state, action) => {
                 state.products = action.payload
             })
             .addCase(getAllProduct.rejected, (state, action) => {
-                console.log('thất bại');
+                console.log('Lỗi tải dữ liệu sản phẩm');
             })
 
             // thêm product

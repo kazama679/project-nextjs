@@ -65,7 +65,6 @@ export default function DashboardPage() {
 
     return (
         <div className="flex">
-            {/* Sidebar */}
             <Sidebar />
             {/* Nội dung chính */}
             <main className="flex-1 p-5 bg-gray-50">
@@ -104,8 +103,8 @@ export default function DashboardPage() {
                             {/* Sắp xếp theo tên */}
                             <select className="border px-4 py-2 rounded" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
                                 <option value="">Sắp xếp theo tên</option>
-                                <option value="az">Sắp xếp A - Z</option>
-                                <option value="za">Sắp xếp Z - A</option>
+                                <option value="az">Sắp xếp từ lớn đến bé</option>
+                                <option value="za">Sắp xếp từ bé đến lớn</option>
                             </select>
                         </div>
                     </div>
