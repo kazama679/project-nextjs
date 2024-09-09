@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { IoMdSearch } from 'react-icons/io';
-import Sidebar from '../../../../components/Sidebar';
+import Sidebar from '../../../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProduct, deleteProduct, updateProduct, addProduct } from '../../../../store/reducers/productReducer';
 import { getAllCategory } from '../../../../store/reducers/categoryReducer';
@@ -16,7 +16,7 @@ export default function Products() {
     const [selectedCategory, setSelectedCategory] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [showForm, setShowForm] = useState(false);
-    const [editingProduct, setEditingProduct] = useState(null); // Để xác định sản phẩm đang chỉnh sửa
+    const [editingProduct, setEditingProduct] = useState(null);
     const productsPerPage = 5;
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Products() {
         }
         setShowForm(false); // Đóng form sau khi thêm/cập nhật
     };
-    
+
 
     // Lọc sản phẩm
     const filteredProducts = products
@@ -67,6 +67,11 @@ export default function Products() {
     // Hàm xóa sản phẩm
     const handleDelete = (id: number) => {
         dispatch(deleteProduct(id));
+    };
+
+    // format tiền
+    const formatVND = (price: number) => {
+        return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     };
 
     return (
@@ -140,7 +145,7 @@ export default function Products() {
                                     </td>
                                     <td className="px-4 py-2 border">{product.status ? 'Đang bán' : 'Ngừng bán'}</td>
                                     <td className="px-4 py-2 border">{product.category}</td>
-                                    <td className="px-4 py-2 border">{product.price}</td>
+                                    <td className="px-4 py-2 border">{formatVND(product.price)}</td>
                                     <td className="px-4 py-2 border">{product.created_at}</td>
                                     <td className="px-4 py-2 border">
                                         <div className='flex justify-center gap-2'>

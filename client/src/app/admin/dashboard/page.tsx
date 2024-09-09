@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../../../components/Sidebar";
+import Sidebar from "../../../components/Sidebar";
 import { User } from "../../interface/user";
 import { useRouter } from "next/navigation";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, PieChart, Pie, Cell } from "recharts";

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { IoMdSearch } from 'react-icons/io';
-import Sidebar from '../../../../components/Sidebar';
+import Sidebar from '../../../components/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllCategory, deleteCategory } from '../../../../store/reducers/categoryReducer';
 import AddCategoryForm from '../category/addCategory/page'

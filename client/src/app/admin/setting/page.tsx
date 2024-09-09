@@ -4,7 +4,7 @@ import { IoIosLogOut } from 'react-icons/io';
 import { MdCategory, MdDashboard, MdOutlineSettingsSuggest } from 'react-icons/md';
 import { PiUsersFill } from 'react-icons/pi';
 import { RiBillFill } from 'react-icons/ri';
-import Sidebar from '../../../../components/Sidebar';
+import Sidebar from '../../../components/Sidebar';
 
 export default function page() {
     return (

@@ -17,7 +17,7 @@
       "id": 70982177,
       "name": "quang1",
       "email": "nxquang2k5@gmail.com",
-      "status": true,
+      "status": false,
       "password": "Teo123456",
       "role": false,
       "avatar": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
@@ -51,7 +51,7 @@
       "password": "111",
       "confirmPassword": "111",
       "role": false,
-      "status": true,
+      "status": false,
       "avatar": "",
       "created_at": "06/09/2024",
       "updated_at": "06/09/2024",
@@ -66,7 +66,7 @@
       "password": "5",
       "confirmPassword": "5",
       "role": false,
-      "status": true,
+      "status": false,
       "avatar": "",
       "created_at": "06/09/2024",
       "updated_at": "06/09/2024",
@@ -77,7 +77,7 @@
     {
       "id": 39443274,
       "name": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W",
-      "price": "10690000",
+      "price": 10690000,
       "stock": 29,
       "category": "Laptop văn phòng",
       "status": true,
@@ -85,15 +85,6 @@
       "description": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W sở hữu thiết kế kim loại sang trọng với trọng lượng chỉ 1.7kg đi kèm màn hình IPS 15.6-inch FHD sắc nét. Công nghệ CPU Intel thế hệ 12, RAM DDR4 và ổ SSD M.2 PCIe Gen3 trên thiết bị đảm bảo hiệu suất mạnh mẽ. Ngoài ra, sản phẩm laptop Asus Vivobook còn có sẵn 3 loại cổng kết nối USB thuận tiện để kết nối các thiết bị lưu trữ khác nhau.",
       "created_at": "13/07/2024",
       "updated_at": "8/9/2024"
-    },
-    {
-      "id": 71671509,
-      "name": "MacBook Pro 16 inch",
-      "price": "93000000",
-      "category": "Laptop văn phòng",
-      "status": true,
-      "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Flaptopvanphong2.jpeg?alt=media&token=3e992185-2e03-4bc9-865e-7651da9e6330",
-      "created_at": "13/07/2024"
     },
     {
       "id": 85440592,
@@ -137,7 +128,7 @@
     {
       "id": 58651124,
       "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H | 8GB | 512GB | RTX 2050 4GB GDDR6 | 15.6 inch FHD | Win 11 | Obsidian Black)",
-      "price": 18450000,
+      "price": 13450000,
       "stock": 30,
       "category": "Laptop gaming",
       "status": true,
@@ -184,6 +175,12 @@
       "id": 45778047,
       "name": "Laptop gaming",
       "description": "cân mọi thể loại game, phù hợp cho thiết kế đồ họa",
+      "status": true
+    },
+    {
+      "id": 45778048,
+      "name": "11",
+      "description": "",
       "status": true
     }
   ],
