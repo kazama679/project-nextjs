@@ -56,13 +56,12 @@ const Login = () => {
                     setMessLogin(false);
                     setMessLogin2(false);
                     setMessLogin3(false);
-                    // Lưu thông tin người dùng vào localStorage dựa trên role
                     if (user.role) { // Nếu là admin
                         localStorage.setItem('admin', JSON.stringify(user));
                         router.push('/admin/dashboard');
                     } else { // Nếu là user
                         localStorage.setItem('user', JSON.stringify(user));
-                        router.push('/home');
+                        router.push('/');
                     }
                 }
             } else {
