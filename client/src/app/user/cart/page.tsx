@@ -9,15 +9,19 @@ import { User } from '@/app/interface/user';
 import { useRouter } from 'next/navigation';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { getAllProduct } from '../../../../store/reducers/productReducer';
 
 export default function Cart() {
   const [userLocal, setUserLocal] = useState<any>(null);
+  const [stockMessage, setStockMessage] = useState<string | null>(null); // State để lưu thông báo hết hàng
   const dispatch = useDispatch();
   const users = useSelector((state: any) => state.userReducer.users);
+  const products = useSelector((state: any) => state.productReducer.products);
   const router = useRouter();
 
   useEffect(() => {
     dispatch(getAllUser());
+    dispatch(getAllProduct());
 
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -50,6 +54,16 @@ export default function Cart() {
       alert("Vui lòng đăng nhập để thay đổi số lượng sản phẩm.");
       return;
     }
+
+    const productInDb = products.find((product: Product) => product.id === productId); // Lấy sản phẩm từ db.json
+
+    if (productInDb && newQuantity > productInDb.stock) {
+      setStockMessage("Số lượng kho của sản phẩm đã hết!"); // Hiển thị thông báo khi vượt quá tồn kho
+      return;
+    } else {
+      setStockMessage(null); // Reset thông báo nếu hợp lệ
+    }
+
     const userToUpdate = users[userIndex];
 
     if (userToUpdate) {
@@ -101,7 +115,6 @@ export default function Cart() {
         });
     }
   };
-  // end-Hàm xóa sản phẩm khỏi giỏ hàng
 
   // Chuyển hướng khi bấm Thanh toán
   const handlePay = () => {
@@ -111,7 +124,34 @@ export default function Cart() {
   // về home
   const nextHome = () => {
     router.push('/');
-  }
+  };
+
+  // xóa tất cả
+  const handleClearCart = () => {
+    if (!userLocal) {
+      alert("Vui lòng đăng nhập để xóa sản phẩm.");
+      return;
+    }
+
+    const userToUpdate = users[userIndex];
+
+    if (userToUpdate) {
+      // Giỏ hàng mới rỗng
+      const updatedUser = {
+        ...userToUpdate,
+        cart: [], // Xóa toàn bộ sản phẩm trong giỏ
+      };
+
+      // Cập nhật giỏ hàng rỗng trong db.json
+      dispatch(updateUserCart(updatedUser))
+        .then(() => {
+          console.log("Xóa tất cả sản phẩm thành công");
+        })
+        .catch(() => {
+          alert("Có lỗi xảy ra khi xóa tất cả sản phẩm.");
+        });
+    }
+  };
 
   return (
     <div>
@@ -181,58 +221,77 @@ export default function Cart() {
               </div>
               <div className="shopping-cart__notes mt-5">
                 <textarea
-                  className="w-full h-24 p-2 border border-gray-300"
-                  placeholder="Ghi chú đơn hàng"
-                ></textarea>
-              </div>
-            </div>
-          ) : (
-            <div className="shopping-cart-zero mt-12 text-lg text-black w-[45%] pr-[200px]">
-              Giỏ hàng của bạn đang trống
-            </div>
-          )}
-          <div className="shopping-cart__summary mt-5 border border-gray-300 w-[20%] h-[217px] p-4">
-            <b className="shopping-cart__summary-b border-b border-gray-300 pb-4 pt-2 block">
-              Thông tin đơn hàng
-            </b>
-            <div className="shopping-cart__summary__child flex justify-between items-center border-b border-gray-300 pb-2 mt-4 mb-2">
-              <b>Tổng tiền: </b>
-              <div className="shopping-cart__summary__child2 text-2xl text-red-600">{formatVND(calculateTotalPrice())}</div>
-            </div>
-            <div className="shopping-cart__summary-t text-gray-500 text-xs mb-2">
-              Bạn có thể nhập mã giảm giá ở trang thanh toán
-            </div>
-
-            {users[userIndex]?.cart?.length > 0 ? (
-              <button
-                onClick={handlePay}
-                className="shopping-cart__checkout w-full py-2 bg-red-600 text-white text-center border-none cursor-pointer"
-              >
-                Thanh toán
-              </button>
-            ) : (
-              <div className="text-center text-red-600 font-bold mt-4">
-                Bạn không có sản phẩm nào!
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Đoạn này đã căn giữa 2 nút */}
-        <div className="shopping-cart__actions flex flex-col items-center mt-2">
-          <button
-            className="shopping-cart__continue w-[50%] py-2 bg-white border border-gray-300 rounded-md text-center cursor-pointer mt-5 font-serif text-xl font-bold hover:bg-gray-100 transition-all"
-            onClick={nextHome}
-          >
-            Quay lại Trang chủ
-          </button>
-        </div>
-      </div>
-      {/* Phần liên hệ */}
-      <ContactSection />
-
-      {/* Footer */}
-      <Footer />
-    </div>
-  );
-}
+                                  className="w-full h-24 p-2 border border-gray-300"
+                                  placeholder="Ghi chú đơn hàng"
+                                ></textarea>
+                              </div>
+                
+                              {/* Thông báo hết hàng */}
+                              {stockMessage && (
+                                <div className="text-red-500 text-center mt-4">
+                                  {stockMessage}
+                                </div>
+                              )}
+                
+                              <button
+                                onClick={handleClearCart}
+                                className="shopping-cart__clear-all w-2/5 rounded py-2 bg-red-600 text-white text-center border-none cursor-pointer mt-5"
+                              >
+                                Xóa tất cả sản phẩm trong giỏ
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="shopping-cart-zero mt-12 text-lg text-black w-[45%] pr-[200px]">
+                              Giỏ hàng của bạn đang trống
+                            </div>
+                          )}
+                          <div className="shopping-cart__summary mt-5 border border-gray-300 w-[20%] h-[217px] p-4">
+                            <b className="shopping-cart__summary-b border-b border-gray-300 pb-4 pt-2 block">
+                              Thông tin đơn hàng
+                            </b>
+                            <div className="shopping-cart__summary__child flex justify-between items-center border-b border-gray-300 pb-2 mt-4 mb-2">
+                              <b>Tổng tiền: </b>
+                              <div className="shopping-cart__summary__child2 text-2xl text-red-600">{formatVND(calculateTotalPrice())}</div>
+                            </div>
+                            <div className="shopping-cart__summary-t text-gray-500 text-xs mb-2">
+                              Bạn có thể nhập mã giảm giá ở trang thanh toán
+                            </div>
+                
+                            {users[userIndex]?.cart?.length > 0 ? (
+                              <button
+                                onClick={handlePay}
+                                className="shopping-cart__checkout w-full py-2 bg-red-600 text-white text-center border-none cursor-pointer"
+                              >
+                                Thanh toán
+                              </button>
+                            ) : (
+                              <div className="text-center text-red-600 font-bold mt-4">
+                                Bạn không có sản phẩm nào!
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                
+                        {/* đường kẻ */}
+                        <div className="border-t border-gray-200 my-4"></div>
+                        {/* end-đường kẻ */}
+                
+                        {/* Đoạn này đã căn giữa 2 nút */}
+                        <div className="shopping-cart__actions flex flex-col items-center mt-2">
+                          <button
+                            className="shopping-cart__continue w-[50%] py-2 bg-white border border-gray-300 rounded-md text-center cursor-pointer mt-5 font-serif text-xl font-bold hover:bg-gray-100 transition-all"
+                            onClick={nextHome}
+                          >
+                            Quay lại Trang chủ
+                          </button>
+                        </div>
+                      </div>
+                      {/* Phần liên hệ */}
+                      <ContactSection />
+                
+                      {/* Footer */}
+                      <Footer />
+                    </div>
+                  );
+                }
+                

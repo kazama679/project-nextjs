@@ -4,7 +4,7 @@ import { MdMailOutline } from 'react-icons/md';
 export default function ContactSection() {
   return (
     <div className="bg-yellow-400 text-blue-900 p-8 text-center mt-20 flex justify-center gap-44">
-      <div className="text-2xl font-bold">HAVE A QUESTION? FEEL FREE TO ASK...</div>
+      <div className="text-2xl font-bold">NẾU CÓ THẮC MẮC GÌ ĐỪNG NGẦN NGẠI HỎI...</div>
       <div className="flex justify-center items-center gap-10">
         <div className="flex items-center text-2xl">
           <FaPhoneAlt className="mr-2 text-white" />

@@ -15,7 +15,7 @@ export default function Card(props: any) {
     const dispatch = useDispatch();
     const products = useSelector((state: any) => state.productReducer.products);
     const users = useSelector((state: any) => state.userReducer.users);
-    const [currentUser, setCurrentUser] = useState<any>(null); // Lưu thông tin người dùng hiện tại từ localStorage
+    const [currentUser, setCurrentUser] = useState<any>(null);
     const [showNotification, setShowNotification] = useState(false); // Trạng thái hiển thị thông báo
 
     useEffect(() => {
