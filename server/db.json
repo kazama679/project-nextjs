@@ -25,7 +25,35 @@
       "address": "Đan Phượng",
       "created_at": "15/07/2024",
       "updated_at": "15/07/2024",
-      "cart": []
+      "cart": [],
+      "like": [
+        {
+          "id": 29279074,
+          "name": "Laptop Lenovo IdeaPad Slim 3 14IAH8 83EQ0004VN (Intel Core i5-12450H | 8GB | 512GB | Intel UHD | 14 inch FHD | Win 11 | Xám)",
+          "price": 11790000,
+          "stock": 18,
+          "category": "Laptop văn phòng",
+          "status": true,
+          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2F49035_laptop_lenovo_ideapad_slim_3_14iah8_83eq0004vn__1_.jpg?alt=media&token=c231e15c-f6c5-4544-a55c-dd0a06284a4b",
+          "description": "CPU: Intel Core i5-12450H (upto 4.40 GHz, 12MB)\nRAM: 8GB Soldered LPDDR5-4800 (not upgradable)\nỔ cứng: 512GB SSD M.2 2242 PCIe® 4.0x4 NVMe\nVGA: Integrated Intel® UHD Graphics",
+          "created_at": "16/07/2024",
+          "updated_at": "16/07/2024",
+          "sales": 13
+        },
+        {
+          "id": 58651124,
+          "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H | 8GB | 512GB | RTX 2050 4GB GDDR6 | 15.6 inch FHD | Win 11 | Obsidian Black)",
+          "price": 13450000,
+          "stock": 27,
+          "category": "Laptop gaming",
+          "status": true,
+          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2F47470_acer_gaming_nitro_v_anv15_51_58an_anphatpc55_3.jpg?alt=media&token=a0f69913-4b21-447e-a218-115ffe40b96c",
+          "description": "CPU: Intel Core i5-13420H (up to 4.60 GHz, 8 nhân, 12 luồng, 12MB)\nRAM: 8GB DDR5 5200MHz (2 khe)\nỔ cứng: 512GB, PCIe, NVMe SSD (nâng cấp tối đa 2TB SSD)\nVGA: NVIDIA GeForce RTX 2050 with 4 GB of dedicated GDDR6 VRAM",
+          "created_at": "16/07/2024",
+          "updated_at": "16/07/2024",
+          "sales": 24
+        }
+      ]
     },
     {
       "id": 39042090,
@@ -40,7 +68,8 @@
       "avatar": "",
       "created_at": "06/09/2024",
       "updated_at": "06/09/2024",
-      "cart": []
+      "cart": [],
+      "like": []
     },
     {
       "id": 60823631,
@@ -55,7 +84,8 @@
       "avatar": "",
       "created_at": "06/09/2024",
       "updated_at": "06/09/2024",
-      "cart": []
+      "cart": [],
+      "like": []
     },
     {
       "id": 61031310,
@@ -70,7 +100,8 @@
       "avatar": "",
       "created_at": "06/09/2024",
       "updated_at": "06/09/2024",
-      "cart": []
+      "cart": [],
+      "like": []
     }
   ],
   "products": [
@@ -78,13 +109,14 @@
       "id": 39443274,
       "name": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W",
       "price": 10690000,
-      "stock": 22,
+      "stock": 20,
       "category": "Laptop văn phòng",
       "status": true,
       "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Flaptopvanphong1.webp?alt=media&token=5eb8db21-ac7f-4194-8f43-da0ca3e57e89",
       "description": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W sở hữu thiết kế kim loại sang trọng với trọng lượng chỉ 1.7kg đi kèm màn hình IPS 15.6-inch FHD sắc nét. Công nghệ CPU Intel thế hệ 12, RAM DDR4 và ổ SSD M.2 PCIe Gen3 trên thiết bị đảm bảo hiệu suất mạnh mẽ. Ngoài ra, sản phẩm laptop Asus Vivobook còn có sẵn 3 loại cổng kết nối USB thuận tiện để kết nối các thiết bị lưu trữ khác nhau.",
       "created_at": "13/07/2024",
-      "updated_at": "8/9/2024"
+      "updated_at": "8/9/2024",
+      "sales": 2
     },
     {
       "id": 55157377,
@@ -96,8 +128,8 @@
       "description": "Laptop Acer Predator là một dòng laptop gaming cao cấp của hãng laptop Acer, được đầu tư chỉn chu về mọi mặt từ build, tản nhiệt cho đến màn hình, cấu hình và các linh kiện bên trong. Đây là chiếc laptop/máy tính xách tay sở hữu chip i9 - 14900HX mạnh nhất hiện nay. Hãy cùng khám phá mẫu Acer Predator Helios Neo 16 PHN16-72 ở bài viết dưới đây nhé!",
       "created_at": "13/07/2024",
       "updated_at": "13/07/2024",
-      "stock": 112,
-      "sales": 22
+      "stock": 111,
+      "sales": 23
     },
     {
       "id": 85277318,
@@ -115,14 +147,14 @@
       "id": 58651124,
       "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H | 8GB | 512GB | RTX 2050 4GB GDDR6 | 15.6 inch FHD | Win 11 | Obsidian Black)",
       "price": 13450000,
-      "stock": 28,
+      "stock": 27,
       "category": "Laptop gaming",
       "status": true,
       "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2F47470_acer_gaming_nitro_v_anv15_51_58an_anphatpc55_3.jpg?alt=media&token=a0f69913-4b21-447e-a218-115ffe40b96c",
       "description": "CPU: Intel Core i5-13420H (up to 4.60 GHz, 8 nhân, 12 luồng, 12MB)\nRAM: 8GB DDR5 5200MHz (2 khe)\nỔ cứng: 512GB, PCIe, NVMe SSD (nâng cấp tối đa 2TB SSD)\nVGA: NVIDIA GeForce RTX 2050 with 4 GB of dedicated GDDR6 VRAM",
       "created_at": "16/07/2024",
       "updated_at": "16/07/2024",
-      "sales": 23
+      "sales": 24
     },
     {
       "id": 29279074,
@@ -165,5 +197,76 @@
     }
   ],
   "orders": [
+    {
+      "id": "RPYDM-8996",
+      "name": "Quang Nguyễn",
+      "phone": "0349199812",
+      "address": "138 Tân Triều",
+      "status": "daGui",
+      "cart": [
+        {
+          "id": 55157377,
+          "name": "Laptop Acer Gaming Predator Helios Neo 16 PHN16-72-91RF - Intel Core i9-14900HX | 16GB RAM | SSD 1TB | RTX 4060 | 16 inch 2.5K 240Hz 100% sRGB",
+          "price": 35990000,
+          "category": "Laptop gaming",
+          "status": true,
+          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fgaming2.png?alt=media&token=34871e4e-cffd-44b0-8fc7-589527053d79",
+          "description": "Laptop Acer Predator là một dòng laptop gaming cao cấp của hãng laptop Acer, được đầu tư chỉn chu về mọi mặt từ build, tản nhiệt cho đến màn hình, cấu hình và các linh kiện bên trong. Đây là chiếc laptop/máy tính xách tay sở hữu chip i9 - 14900HX mạnh nhất hiện nay. Hãy cùng khám phá mẫu Acer Predator Helios Neo 16 PHN16-72 ở bài viết dưới đây nhé!",
+          "created_at": "13/07/2024",
+          "updated_at": "13/07/2024",
+          "stock": 112,
+          "sales": 22,
+          "quantity": 1
+        },
+        {
+          "id": 39443274,
+          "name": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W",
+          "price": 10690000,
+          "stock": 22,
+          "category": "Laptop văn phòng",
+          "status": true,
+          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Flaptopvanphong1.webp?alt=media&token=5eb8db21-ac7f-4194-8f43-da0ca3e57e89",
+          "description": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W sở hữu thiết kế kim loại sang trọng với trọng lượng chỉ 1.7kg đi kèm màn hình IPS 15.6-inch FHD sắc nét. Công nghệ CPU Intel thế hệ 12, RAM DDR4 và ổ SSD M.2 PCIe Gen3 trên thiết bị đảm bảo hiệu suất mạnh mẽ. Ngoài ra, sản phẩm laptop Asus Vivobook còn có sẵn 3 loại cổng kết nối USB thuận tiện để kết nối các thiết bị lưu trữ khác nhau.",
+          "created_at": "13/07/2024",
+          "updated_at": "8/9/2024",
+          "quantity": 2
+        }
+      ],
+      "note": "",
+      "ship": 30000,
+      "payTo": "NhanHang",
+      "idUser": 70982177,
+      "created_at": "15/9/2024",
+      "updated_at": "15/9/2024"
+    },
+    {
+      "id": "XYASO-8579",
+      "name": "Quang",
+      "phone": "0349123981",
+      "address": "Liên Hà, Đan Phượng",
+      "status": "daDuyet",
+      "cart": [
+        {
+          "id": 58651124,
+          "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H | 8GB | 512GB | RTX 2050 4GB GDDR6 | 15.6 inch FHD | Win 11 | Obsidian Black)",
+          "price": 13450000,
+          "stock": 28,
+          "category": "Laptop gaming",
+          "status": true,
+          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2F47470_acer_gaming_nitro_v_anv15_51_58an_anphatpc55_3.jpg?alt=media&token=a0f69913-4b21-447e-a218-115ffe40b96c",
+          "description": "CPU: Intel Core i5-13420H (up to 4.60 GHz, 8 nhân, 12 luồng, 12MB)\nRAM: 8GB DDR5 5200MHz (2 khe)\nỔ cứng: 512GB, PCIe, NVMe SSD (nâng cấp tối đa 2TB SSD)\nVGA: NVIDIA GeForce RTX 2050 with 4 GB of dedicated GDDR6 VRAM",
+          "created_at": "16/07/2024",
+          "updated_at": "16/07/2024",
+          "sales": 23,
+          "quantity": 1
+        }
+      ],
+      "note": "",
+      "ship": 30000,
+      "payTo": "ChuyenKhoan",
+      "idUser": 70982177,
+      "created_at": "15/9/2024",
+      "updated_at": "15/9/2024"
+    }
   ]
 }

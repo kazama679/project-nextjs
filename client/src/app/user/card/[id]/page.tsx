@@ -49,9 +49,9 @@ export default function Card(props: any) {
 
         if (userToUpdate) {
             let newCart;
-            const existingProduct = userToUpdate.cart.find((item: Product) => item.id === product.id);
+            const checkProduct = userToUpdate.cart.find((item: Product) => item.id === product.id);
 
-            if (existingProduct) {
+            if (checkProduct) {
                 // Nếu đã có sản phẩm, tăng quantity bằng cách sử dụng map để cập nhật giỏ hàng
                 newCart = userToUpdate.cart.map((item: any) =>
                     item.id === product.id

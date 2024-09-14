@@ -27,7 +27,7 @@ export default function Products() {
     const handleSubmitForm = (productData: any) => {
         const newProductData = {
             ...productData,
-            id: productData.id || Date.now(),
+            id: productData.id || Math.floor(Math.random() * 99999999),
             created_at: productData.created_at || new Date().toLocaleDateString('vi-VN'),
             updated_at: new Date().toLocaleDateString('vi-VN')
         };

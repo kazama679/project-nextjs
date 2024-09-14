@@ -73,6 +73,10 @@ const Login = () => {
         }
     };
 
+    const nextRegister=()=>{
+        router.push("/user/register");
+    }
+
     return (
         <div className="flex flex-col items-center justify-center p-8 bg-white shadow-lg rounded-lg">
             <form className="flex flex-col items-center w-full max-w-sm" onSubmit={handleLogin}>
@@ -105,7 +109,7 @@ const Login = () => {
                 {messLogin && <div className="text-red-500 text-xs mt-2">Tài khoản hoặc mật khẩu không chính xác</div>}
                 {messLogin2 && <div className="text-red-500 text-xs mt-2">Tài khoản và mật khẩu không được để trống</div>}
                 {messLogin3 && <div className="text-red-500 text-xs mt-2">Tài khoản đã bị chặn, vui lòng dùng tài khoản khác!</div>}
-                <a href="#" className="text-blue-500 text-sm mt-4">Bạn quên mật khẩu?</a>
+                <a onClick={nextRegister} className="text-blue-500 text-sm mt-4">Bạn chưa có tài khoản?</a>
                 <button type="submit" className="mt-4 bg-pink-500 text-white rounded-full px-8 py-2 uppercase font-bold hover:bg-pink-600 transition">Đăng nhập</button>
                 {messLogin4 && <div className="text-green-500 text-xs mt-2">Đã đăng nhập tài khoản thành công</div>}
             </form>

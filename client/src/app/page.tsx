@@ -7,59 +7,71 @@ import Header from "../components/Header";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import { GiCheckMark } from "react-icons/gi";
-import { CgCalendarDates } from "react-icons/cg";
-import { FaPlugCircleCheck } from "react-icons/fa6";
-import { FaRedo, FaSearch } from "react-icons/fa";
+import { FaHeartCircleCheck, FaHeartCircleXmark, FaPlugCircleCheck } from "react-icons/fa6";
+import { FaHeart, FaRedo, FaSearch } from "react-icons/fa";
 import { Product } from "./interface/product";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import { useRouter } from "next/navigation";
+import { CiHeart } from "react-icons/ci";
+import { getAllUser, updateUserCart } from "../../store/reducers/userReducer";
+import { Category } from "./interface/category";
 
 export default function Home() {
   const dispatch = useDispatch();
   const router = useRouter();
   const products = useSelector((state: any) => state.productReducer.products);
   const categori = useSelector((state: any) => state.categoryReducer.classify);
+  const users = useSelector((state: any) => state.userReducer.users);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [notificationType, setNotificationType] = useState<string | null>(null);
 
   const [year, setYear] = useState("");
   const [category, setCategory] = useState("");
   const [priceRange, setPriceRange] = useState("");
   const [searchTerm, setSearchTerm] = useState(""); // Thêm state cho ô tìm kiếm
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1); // State cho phân trang
   const [itemsPerPage] = useState(6); // Số lượng sản phẩm hiển thị mỗi trang
+  const [sortOrder, setSortOrder] = useState<string>(""); // Trạng thái sắp xếp theo giá
 
   useEffect(() => {
     dispatch(getAllProduct());
+    dispatch(getAllUser());
     dispatch(getAllCategory());
+    // Lấy thông tin người dùng từ localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
   }, [dispatch]);
 
   useEffect(() => {
-    let filtered = products;
-
+    let filtered = [...products]; // Tạo bản sao của mảng products
+  
     // Tìm kiếm theo từ khóa trong tên sản phẩm
     if (searchTerm) {
       filtered = filtered.filter((product: Product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-
+  
     // Lọc theo năm
     if (year) {
       filtered = filtered.filter(
         (product: Product) => product.created_at.slice(-4) === year
       );
     }
-
+  
     // Lọc theo danh mục
     if (category) {
       filtered = filtered.filter(
         (product: Product) => product.category === category
       );
     }
-
+  
     // Lọc theo giá
     if (priceRange) {
       filtered = filtered.filter((product: Product) => {
@@ -70,9 +82,16 @@ export default function Home() {
         return true;
       });
     }
-
+  
+    // Sắp xếp theo giá
+    if (sortOrder === "up") {
+      filtered = [...filtered].sort((a: Product, b: Product) => a.price - b.price); // Tăng dần
+    } else if (sortOrder === "down") {
+      filtered = [...filtered].sort((a: Product, b: Product) => b.price - a.price); // Giảm dần
+    }
+  
     setFilteredProducts(filtered);
-  }, [year, category, priceRange, searchTerm, products]);
+  }, [year, category, priceRange, searchTerm, sortOrder, products]);
 
   // Định dạng tiền tệ
   const formatVND = (price: number) =>
@@ -109,7 +128,47 @@ export default function Home() {
 
   // Hàm chuyển trang
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-  
+
+  // thêm vào yêu thích
+  const addToLike = (product: Product) => {
+    if (!currentUser) {
+      alert("Vui lòng đăng nhập để thêm sản phẩm vào yêu thích.");
+      return;
+    }
+
+    const userToUpdate = users.find((user: any) => user.id === currentUser.id);
+
+    if (userToUpdate) {
+      let newLikes = [...(userToUpdate.like || [])];
+      const isProductLiked = newLikes.some((item: Product) => item.id === product.id);
+
+      if (isProductLiked) {
+        newLikes = newLikes.filter((item: Product) => item.id !== product.id);
+        setNotificationType('remove');  // Thông báo khi bỏ yêu thích
+      } else {
+        newLikes = [...newLikes, product];
+        setNotificationType('add');    // Thông báo khi thêm vào yêu thích
+      }
+
+      const updatedUser = { ...userToUpdate, like: newLikes };
+
+      dispatch(updateUserCart(updatedUser))
+        .then(() => {
+          setCurrentUser(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+          setTimeout(() => setNotificationType(null), 2000);
+        })
+        .catch(() => {
+          alert("Có lỗi xảy ra khi cập nhật sản phẩm yêu thích.");
+        });
+    }
+  };
+
+  // Hàm kiểm tra xem sản phẩm đã có trong danh sách yêu thích chưa
+  const checkProductDb = (productId: number) => {
+    return currentUser && currentUser.like && currentUser.like.some((item: Product) => item.id === productId);
+  };
+
   return (
     <>
       <Header />
@@ -143,29 +202,29 @@ export default function Home() {
           </div>
           <div className="container mx-auto py-10">
             <div className="flex justify-center space-x-5 w-full h-[250px]">
-              {topSellingProducts.map((product: any) => (
-                <div onClick={()=>handleCard(product)} key={product.id} className="relative w-1/4 cursor-pointer bg-white group border border-gray-300">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-56 h-56 object-cover ml-36 mt-6"
-                />
-                <div className="absolute inset-0 flex flex-col justify-start p-5 bg-white bg-opacity-10">
-                  <h3 className="text-2xl font-bold">
-                    {product.name.split(' ').slice(1, 2).join(' ')}
-                    <br />
-                    {product.name.split(' ').slice(2, 3).join(' ')}
-                  </h3>
-                  <p className="text-gray-600">{product.category}</p>
+              {topSellingProducts.map((product: Product) => (
+                <div onClick={() => handleCard(product)} key={product.id} className="relative w-1/4 cursor-pointer bg-white group border border-gray-300">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-56 h-56 object-cover ml-36 mt-6"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-start p-5 bg-white bg-opacity-10">
+                    <h3 className="text-2xl font-bold">
+                      {product.name.split(' ').slice(1, 2).join(' ')}
+                      <br />
+                      {product.name.split(' ').slice(2, 3).join(' ')}
+                    </h3>
+                    <p className="text-gray-600">{product.category}</p>
+                  </div>
+                  {/* Hiệu ứng đường kẻ khi hover */}
+                  <div className="absolute inset-0 flex justify-center items-center">
+                    <div className="absolute top-0 left-0 w-0 h-[2px] bg-black group-hover:w-full transition-all duration-500"></div>
+                    <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-black group-hover:w-full transition-all duration-500"></div>
+                    <div className="absolute top-0 left-0 h-0 w-[2px] bg-black group-hover:h-full transition-all duration-500"></div>
+                    <div className="absolute top-0 right-0 h-0 w-[2px] bg-black group-hover:h-full transition-all duration-500"></div>
+                  </div>
                 </div>
-                {/* Hiệu ứng đường kẻ khi hover */}
-                <div className="absolute inset-0 flex justify-center items-center">
-                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-black group-hover:w-full transition-all duration-500"></div>
-                  <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-black group-hover:w-full transition-all duration-500"></div>
-                  <div className="absolute top-0 left-0 h-0 w-[2px] bg-black group-hover:h-full transition-all duration-500"></div>
-                  <div className="absolute top-0 right-0 h-0 w-[2px] bg-black group-hover:h-full transition-all duration-500"></div>
-                </div>
-              </div>
               ))}
             </div>
           </div>
@@ -174,10 +233,10 @@ export default function Home() {
       {/* end-hiển thị sản phẩm bán chạy */}
 
       {/* hiển thị theo danh mục */}
-      {categori?.map((category: any) => {
+      {categori?.map((category: Category) => {
         // Lọc sản phẩm theo danh mục
         const filteredProducts = products.filter(
-          (product: any) => product.category === category.name
+          (product: Product) => product.category === category.name
         );
         return (
           <div key={category.id} className="py-10 mt-10 cursor-pointer">
@@ -188,12 +247,20 @@ export default function Home() {
             {/* hiển thị sản phẩm có danh mục */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
               {/* Hiển thị tối đa 4 sản phẩm */}
-              {filteredProducts.slice(0, 4).map((product: any) => (
+              {filteredProducts.slice(0, 4).map((product: Product) => (
                 <div
                   onClick={() => handleCard(product)}
                   key={product.id}
                   className="bg-white rounded-lg shadow-md p-4 relative hover:border-black transition-all duration-300 hover:shadow-2xl"
                 >
+                  {/* stopPropagation giúp ngăn chặn nhận onclick từ phần tử con sang cha */}
+                  <div onClick={(e) => { e.stopPropagation(); addToLike(product); }}>
+                    {checkProductDb(product.id) ? (
+                      <FaHeart className="hover:text-red-600 text-xl text-red-600" />
+                    ) : (
+                      <CiHeart className="hover:text-red-600 text-xl" />
+                    )}
+                  </div>
                   <div className="bg-red-500 text-white text-sm px-2 py-1 rounded-full absolute top-2 right-2">
                     New
                   </div>
@@ -252,7 +319,7 @@ export default function Home() {
               onChange={(e) => setYear(e.target.value)}
               className="w-1/3 p-3 bg-gray-200 text-black rounded"
             >
-              <option value="">Chọn năm</option>
+              <option value="">Lọc theo năm</option>
               <option value="2024">2024</option>
               <option value="2023">2023</option>
               <option value="2022">2022</option>
@@ -264,7 +331,7 @@ export default function Home() {
               onChange={(e) => setCategory(e.target.value)}
               className="w-1/3 p-3 bg-gray-200 text-black rounded"
             >
-              <option value="">Chọn danh mục</option>
+              <option value="">Lọc theo danh mục</option>
               {categori?.map((item: Product) => (
                 <option key={item.id} value={item.name}>
                   {item.name}
@@ -277,10 +344,20 @@ export default function Home() {
               onChange={(e) => setPriceRange(e.target.value)}
               className="w-1/3 p-3 bg-gray-200 text-black rounded"
             >
-              <option value="">Chọn giá</option>
+              <option value="">Lọc theo giá</option>
               <option value="15">Dưới 15 tr</option>
               <option value="1530">15-30tr</option>
               <option value="30">Trên 30tr</option>
+            </select>
+
+            <select
+              value={sortOrder}
+              onChange={(e) => setSortOrder(e.target.value)}
+              className="w-1/3 p-3 bg-gray-200 text-black rounded"
+            >
+              <option value="">Sắp xếp theo giá</option>
+              <option value="up">Tăng dần</option>
+              <option value="down">Giảm dần</option>
             </select>
 
             <button
@@ -334,8 +411,11 @@ export default function Home() {
                 <span>
                   <GiCheckMark className="ml-8" /> Chính hãng
                 </span>
-                <span>
-                  <CgCalendarDates className="ml-2" /> 2023
+                <span
+                  onClick={() => addToLike(item)}
+                  className="cursor-pointer hover:text-white"
+                >
+                  {checkProductDb(item.id) ? <><FaHeart className="ml-5 text-red-600" />Yêu thích</> : <><CiHeart className="ml-5 text-xl mt-[-5px]" />Yêu thích</>}
                 </span>
                 <span>
                   <FaPlugCircleCheck className="ml-8" /> Sạc nhanh!
@@ -361,6 +441,21 @@ export default function Home() {
         ))}
       </div>
       {/* end-Phân trang */}
+
+      {/* hiển thị form yêu thích */}
+      {notificationType === 'add' ? (
+        <div className="fixed inset-0 flex items-center justify-center z-50 border border-black">
+          <div className="bg-white p-6 shadow-2xl rounded-lg z-50 flex flex-col items-center justify-center text-center">
+            <FaHeartCircleCheck className="text-red-500 text-4xl mb-2" />
+            <p className="text-lg font-bold text-red-500">Sản phẩm đã được thêm vào yêu thích</p>
+          </div>
+        </div>
+      ) : notificationType === 'remove' ? <div className="fixed inset-0 flex items-center justify-center z-50 border border-black">
+        <div className="bg-white p-6 shadow-2xl rounded-lg z-50 flex flex-col items-center justify-center text-center">
+          <FaHeartCircleXmark className="text-black text-4xl mb-2" />
+          <p className="text-lg font-bold">Đã bỏ yêu thích sản phẩm</p>
+        </div>
+      </div> : <></>}
 
       <ContactSection />
       <Footer />

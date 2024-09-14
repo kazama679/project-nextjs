@@ -11,4 +11,5 @@ export interface User {
     created_at: string;
     updated_at: string;
     cart: Array<any>;
+    like: Array<any>;
 };

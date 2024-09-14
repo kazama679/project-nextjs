@@ -91,6 +91,11 @@ export default function Header() {
     router.push('/');
   }
 
+  // chuyển về home
+  const handleMyLike=()=>{
+    router.push('/user/myLike');
+  }
+
   // Thêm sự kiện lăn chuột
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -140,13 +145,16 @@ export default function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <p className="py-2 hover:text-teal-500 cursor-pointer" onClick={handleProfile}>
+            <p className="py-2 hover:text-teal-500 cursor-pointer flex justify-center text-center" onClick={handleProfile}>
               Tài khoản của tôi
             </p>
-            <p className="py-2 hover:text-teal-500 cursor-pointer" onClick={handleMyOrder}>
+            <p className="py-2 hover:text-teal-500 cursor-pointer flex justify-center text-center" onClick={handleMyOrder}>
               Đơn mua
             </p>
-            <p className="py-2 hover:text-teal-500 cursor-pointer" onClick={handleLogout}>
+            <p className="py-2 hover:text-teal-500 cursor-pointer flex justify-center text-center" onClick={handleMyLike}>
+              Yêu thích
+            </p>
+            <p className="py-2 hover:text-red-500 cursor-pointer flex justify-center text-center" onClick={handleLogout}>
               Đăng xuất
             </p>
           </div>

@@ -5,7 +5,7 @@ export default function Footer() {
     <>
       <div className="bg-gray-900 text-white p-10 flex flex-wrap justify-between gap-10 py-20 px-40">
         <div className="flex-1 min-w-[200px]">
-          <h4 className="text-lg font-bold mb-4 text-purple-500">MOTORS <span className="text-white">WORDPRESS THEME</span></h4>
+          <h4 className="text-lg font-bold mb-4 text-purple-500">LAPTOPS <span className="text-white">WORDPRESS THEME</span></h4>
           <p className="text-gray-400">
             Fusce interdum ipsum egestas urna amet fringilla, et placerat ex venenatis. Aliquet luctus pharetra.
             Proin sed fringilla lectus... Proin nec egestas nibh, eget egestas urna.
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="bg-gray-800 text-gray-400 p-5 flex justify-between items-center px-40">
-        <p>Copyright © 2021. Motors - WordPress Theme by StylemixThemes</p>
+        <p>Copyright © 2021. Laptops - WordPress Theme by StylemixThemes</p>
         <div className="flex gap-4">
           <FaFacebook className="hover:text-purple-500" />
           <FaTwitter className="hover:text-purple-500" />
