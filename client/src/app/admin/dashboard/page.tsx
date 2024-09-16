@@ -4,36 +4,63 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../../components/Sidebar";
 import { User } from "../../interface/user";
 import { useRouter } from "next/navigation";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, PieChart, Pie, Cell } from "recharts";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { getAllProduct } from "../../../../store/reducers/productReducer";
+import { getAllCategory } from "../../../../store/reducers/categoryReducer";
+import { getAllOrder } from "../../../../store/reducers/orderReducer";
 
 export default function DashboardPage() {
+    const dispatch = useDispatch();
+    const products = useSelector((state: any) => state.productReducer.products);
+    const categori = useSelector((state: any) => state.categoryReducer.classify);
+    const orders = useSelector((state: any) => state.orderReducer.orders);
     const [admin, setAdmin] = useState<User | null>(null);
     const router = useRouter();
 
-    // Dữ liệu cho biểu đồ LineChart và PieChart
-    const earningsData = [
-        { name: "Jan", earnings: 4000 },
-        { name: "Feb", earnings: 3000 },
-        { name: "Mar", earnings: 2000 },
-        { name: "Apr", earnings: 2780 },
-        { name: "May", earnings: 1890 },
-        { name: "Jun", earnings: 2390 },
-        { name: "Jul", earnings: 3490 },
-        { name: "Aug", earnings: 2100 },
-        { name: "Sep", earnings: 2500 },
-        { name: "Oct", earnings: 2800 },
-        { name: "Nov", earnings: 3100 },
-        { name: "Dec", earnings: 4000 },
-    ];
+    useEffect(() => {
+        dispatch(getAllProduct());
+        dispatch(getAllCategory());
+        dispatch(getAllOrder());
+    }, [dispatch]);
 
-    const revenueData = [
-        { name: "Category A", value: 400 },
-        { name: "Category B", value: 300 },
-        { name: "Category C", value: 300 },
-        { name: "Category D", value: 200 },
-    ];
+    // Hàm tính tổng doanh thu
+    const total = () => {
+        let totalRevenue = 0;
+        orders.forEach((order: any) => {
+            order.cart.forEach((item: any) => {
+                totalRevenue += item.price * item.quantity;
+            });
+        });
+        return totalRevenue;
+    };
 
-    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+    // Hàm tính tổng số sản phẩm đã bán
+    const totalProduct = () => {
+        let totalSold = 0;
+        orders.forEach((order: any) => {
+            order.cart.forEach((item: any) => {
+                totalSold += item.quantity;
+            });
+        });
+        return totalSold;
+    };
+
+    // Hàm tính tổng số sản phẩm tồn kho
+    const totalStock = () => {
+        let totalStock = 0;
+        products.forEach((product: any) => {
+            totalStock += product.stock;
+        });
+        return totalStock;
+    };
+
+    // Hàm tính tổng số danh mục
+    const totalCategory = () => {
+        return categori.length;
+    };
+    // Định dạng tiền tệ
+    const formatVND = (price: number) => price.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 
     useEffect(() => {
         const storedAdmin = localStorage.getItem("admin");
@@ -69,54 +96,22 @@ export default function DashboardPage() {
                         </div>
                     </header>
                     <div className="bg-white p-6 rounded-lg shadow-lg">
-                        {/* Earnings Overview */}
                         <div className="grid grid-cols-4 gap-4 mb-6">
                             <div className="p-4 bg-white rounded-lg shadow">
-                                <h3 className="text-sm text-gray-500">Earnings (Monthly)</h3>
-                                <p className="text-lg font-bold">$40,000</p>
+                                <h3 className="text-sm text-gray-500">Doanh thu</h3>
+                                <p className="text-lg font-bold">{formatVND(total())}</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow">
-                                <h3 className="text-sm text-gray-500">Earnings (Annual)</h3>
-                                <p className="text-lg font-bold">$215,000</p>
+                                <h3 className="text-sm text-gray-500">Số sản phẩm đã bán</h3>
+                                <p className="text-lg font-bold">{totalProduct()}</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow">
-                                <h3 className="text-sm text-gray-500">Tasks</h3>
-                                <p className="text-lg font-bold">50%</p>
+                                <h3 className="text-sm text-gray-500">Sản phẩm trong kho</h3>
+                                <p className="text-lg font-bold">{totalStock()}</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg shadow">
-                                <h3 className="text-sm text-gray-500">Pending Requests</h3>
-                                <p className="text-lg font-bold">18</p>
-                            </div>
-                        </div>
-                        <div className="flex gap-20">
-                            <div className="mb-6">
-                                <h3 className="text-xl font-semibold mb-4">Earnings Overview</h3>
-                                <LineChart width={600} height={300} data={earningsData}>
-                                    <Line type="monotone" dataKey="earnings" stroke="#8884d8" />
-                                    <CartesianGrid stroke="#ccc" />
-                                    <XAxis dataKey="name" />
-                                    <YAxis />
-                                    <Tooltip />
-                                </LineChart>
-                            </div>
-                            <div>
-                                <h3 className="text-xl font-semibold mb-4">Revenue Sources</h3>
-                                <PieChart width={400} height={400}>
-                                    <Pie
-                                        data={revenueData}
-                                        cx={200}
-                                        cy={200}
-                                        labelLine={false}
-                                        outerRadius={80}
-                                        fill="#8884d8"
-                                        dataKey="value"
-                                    >
-                                        {revenueData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip />
-                                </PieChart>
+                                <h3 className="text-sm text-gray-500">Số danh mục</h3>
+                                <p className="text-lg font-bold">{totalCategory()}</p>
                             </div>
                         </div>
                     </div>

@@ -31,17 +31,16 @@ export default function Home() {
   const [year, setYear] = useState("");
   const [category, setCategory] = useState("");
   const [priceRange, setPriceRange] = useState("");
-  const [searchTerm, setSearchTerm] = useState(""); // Thêm state cho ô tìm kiếm
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = useState(1); // State cho phân trang
-  const [itemsPerPage] = useState(6); // Số lượng sản phẩm hiển thị mỗi trang
-  const [sortOrder, setSortOrder] = useState<string>(""); // Trạng thái sắp xếp theo giá
+  const [currentPage, setCurrentPage] = useState(1); 
+  const [itemsPerPage] = useState(6); 
+  const [sortOrder, setSortOrder] = useState<string>("");
 
   useEffect(() => {
     dispatch(getAllProduct());
     dispatch(getAllUser());
     dispatch(getAllCategory());
-    // Lấy thông tin người dùng từ localStorage
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setCurrentUser(JSON.parse(storedUser));
@@ -49,30 +48,22 @@ export default function Home() {
   }, [dispatch]);
 
   useEffect(() => {
-    let filtered = [...products]; // Tạo bản sao của mảng products
-  
-    // Tìm kiếm theo từ khóa trong tên sản phẩm
+    let filtered = [...products]; 
     if (searchTerm) {
       filtered = filtered.filter((product: Product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
-  
-    // Lọc theo năm
     if (year) {
       filtered = filtered.filter(
         (product: Product) => product.created_at.slice(-4) === year
       );
     }
-  
-    // Lọc theo danh mục
     if (category) {
       filtered = filtered.filter(
         (product: Product) => product.category === category
       );
     }
-  
-    // Lọc theo giá
     if (priceRange) {
       filtered = filtered.filter((product: Product) => {
         if (priceRange === "15") return product.price <= 15000000;
@@ -82,31 +73,26 @@ export default function Home() {
         return true;
       });
     }
-  
-    // Sắp xếp theo giá
     if (sortOrder === "up") {
-      filtered = [...filtered].sort((a: Product, b: Product) => a.price - b.price); // Tăng dần
+      filtered = [...filtered].sort((a: Product, b: Product) => a.price - b.price); 
     } else if (sortOrder === "down") {
-      filtered = [...filtered].sort((a: Product, b: Product) => b.price - a.price); // Giảm dần
+      filtered = [...filtered].sort((a: Product, b: Product) => b.price - a.price);
     }
   
     setFilteredProducts(filtered);
   }, [year, category, priceRange, searchTerm, sortOrder, products]);
 
-  // Định dạng tiền tệ
   const formatVND = (price: number) =>
     price.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
 
-  // Hàm reset tất cả các trường
   const handleReset = () => {
     setYear("");
     setCategory("");
     setPriceRange("");
-    setSearchTerm(""); // Reset giá trị tìm kiếm
+    setSearchTerm(""); 
     setFilteredProducts(products);
   };
 
-  // Hàm để điều hướng tới chi tiết sản phẩm
   const handleCard = (item: Product) => {
     router.push(`/user/card/${item.id}`);
   };
@@ -141,17 +127,14 @@ export default function Home() {
     if (userToUpdate) {
       let newLikes = [...(userToUpdate.like || [])];
       const isProductLiked = newLikes.some((item: Product) => item.id === product.id);
-
       if (isProductLiked) {
         newLikes = newLikes.filter((item: Product) => item.id !== product.id);
-        setNotificationType('remove');  // Thông báo khi bỏ yêu thích
+        setNotificationType('remove');  
       } else {
         newLikes = [...newLikes, product];
-        setNotificationType('add');    // Thông báo khi thêm vào yêu thích
+        setNotificationType('add'); 
       }
-
       const updatedUser = { ...userToUpdate, like: newLikes };
-
       dispatch(updateUserCart(updatedUser))
         .then(() => {
           setCurrentUser(updatedUser);
@@ -178,14 +161,35 @@ export default function Home() {
           <SwiperSlide>
             <img
               className="w-full h-[673px]"
-              src="https://motors.stylemixthemes.com/dealer-two/wp-content/uploads/sites/9/revslider/home_slider/slide_1.jpg"
+              src="https://www.homepaylater.vn/static/ba8cdabb9f818bc4cdf2fd35013e7c82/51924/7_laptop_msi_titan_gt77_hx_13vi_077vn_chinh_la_ke_thong_tri_tuyet_doi_nha_msi_voi_suc_manh_chan_dong_thien_ha_vuot_qua_moi_gioi_han_truoc_kia_d7170b82c9.webp"
               alt=""
             />
           </SwiperSlide>
           <SwiperSlide>
             <img
               className="w-full h-[673px]"
-              src="https://cms-i.autodaily.vn/du-lieu/2021/06/22/nguoi-dung-vinfast-lux-01.jpg"
+              src="https://www.homepaylater.vn/static/28d4233b7a91cc5d6de756a085de0b70/2f4b3/1_cac_dong_laptop_gaming_msi_luon_duoc_nhieu_tin_do_cong_nghe_va_game_thu_san_don_vi_suc_manh_vuot_troi_5f475a6a5c.webp"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="w-full h-[673px]"
+              src="https://www.homepaylater.vn/static/72f3958a866b47d52c740d44cbd7b955/7ca15/2_cac_dong_laptop_gaming_msi_trai_dai_o_moi_phan_khuc_phuc_vu_toi_da_nhu_cau_choi_game_cua_nguoi_dung_9214abb976.webp"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="w-full h-[673px]"
+              src="https://www.homepaylater.vn/static/3adc22d69d4703a25930308499e223bb/91c60/5_chiec_laptop_gaming_msi_katana_gf66_11ue_836vn_duoc_trau_chuot_ti_mi_tua_nhung_luoi_kiem_sac_ben_san_sang_nghenh_chien_bat_cu_doi_thu_nao_ad17c919dd.webp"
+              alt=""
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              className="w-full h-[673px]"
+              src="https://www.homepaylater.vn/static/4e8ee94623b9e79287260f6facd66686/f723b/6_man_hinh_laptop_gaming_msi_cyborg_15_a12ve_412vn_se_khong_de_ban_bo_lo_bat_cu_mot_khoanh_khac_chuyen_dong_nao_1565bbdb81.webp"
               alt=""
             />
           </SwiperSlide>

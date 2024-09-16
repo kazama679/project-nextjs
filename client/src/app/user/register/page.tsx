@@ -53,7 +53,6 @@ export default function Register() {
       newErrors.email = true;
       isValid = false;
     } else {
-      // Kiểm tra xem email có bị trùng không
       const ischeckEmail = users.some((user: User) => user.email === email);
       if (ischeckEmail) {
         newErrors.checkEmail = true;
@@ -121,7 +120,7 @@ export default function Register() {
     router.push("/user/login");
   }
   return (
-    <div className="flex flex-col items-center justify-center p-8 bg-white shadow-lg rounded-lg">
+    <div className="flex flex-col items-center justify-center p-8 bg-white rounded-lg">
       <form className="flex flex-col items-center w-full max-w-sm" onSubmit={handleSubmit}>
         <h1 className="font-bold text-xl mb-4">Tạo tài khoản</h1>
 
@@ -186,7 +185,7 @@ export default function Register() {
         >
           Đăng ký
         </button>
-        <div onClick={nextLogin}>bạn có tài khoản rồi?</div>
+        <div onClick={nextLogin} className="cursor-pointer">bạn có tài khoản rồi?</div>
       </form>
     </div>
   );

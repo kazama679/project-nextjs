@@ -25,7 +25,22 @@
       "address": "Đan Phượng",
       "created_at": "15/07/2024",
       "updated_at": "15/07/2024",
-      "cart": [],
+      "cart": [
+        {
+          "id": 39443274,
+          "name": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W",
+          "price": 10690000,
+          "stock": 20,
+          "category": "Laptop văn phòng",
+          "status": true,
+          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Flaptopvanphong1.webp?alt=media&token=5eb8db21-ac7f-4194-8f43-da0ca3e57e89",
+          "description": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W sở hữu thiết kế kim loại sang trọng với trọng lượng chỉ 1.7kg đi kèm màn hình IPS 15.6-inch FHD sắc nét. Công nghệ CPU Intel thế hệ 12, RAM DDR4 và ổ SSD M.2 PCIe Gen3 trên thiết bị đảm bảo hiệu suất mạnh mẽ. Ngoài ra, sản phẩm laptop Asus Vivobook còn có sẵn 3 loại cổng kết nối USB thuận tiện để kết nối các thiết bị lưu trữ khác nhau.",
+          "created_at": "13/07/2024",
+          "updated_at": "8/9/2024",
+          "sales": 2,
+          "quantity": 1
+        }
+      ],
       "like": [
         {
           "id": 29279074,
@@ -39,67 +54,21 @@
           "created_at": "16/07/2024",
           "updated_at": "16/07/2024",
           "sales": 13
-        },
-        {
-          "id": 58651124,
-          "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H | 8GB | 512GB | RTX 2050 4GB GDDR6 | 15.6 inch FHD | Win 11 | Obsidian Black)",
-          "price": 13450000,
-          "stock": 27,
-          "category": "Laptop gaming",
-          "status": true,
-          "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2F47470_acer_gaming_nitro_v_anv15_51_58an_anphatpc55_3.jpg?alt=media&token=a0f69913-4b21-447e-a218-115ffe40b96c",
-          "description": "CPU: Intel Core i5-13420H (up to 4.60 GHz, 8 nhân, 12 luồng, 12MB)\nRAM: 8GB DDR5 5200MHz (2 khe)\nỔ cứng: 512GB, PCIe, NVMe SSD (nâng cấp tối đa 2TB SSD)\nVGA: NVIDIA GeForce RTX 2050 with 4 GB of dedicated GDDR6 VRAM",
-          "created_at": "16/07/2024",
-          "updated_at": "16/07/2024",
-          "sales": 24
         }
       ]
     },
     {
-      "id": 39042090,
-      "name": "hihi",
-      "email": "22@gmail.com",
-      "phone": "12313",
-      "address": "123123",
-      "password": "24",
-      "confirmPassword": "2",
-      "role": false,
+      "id": 32538142,
+      "name": "12312321",
+      "email": "132132@gmail.com",
+      "password": "123456",
+      "phone": "1324352643",
+      "address": "1",
+      "avatar": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
       "status": true,
-      "avatar": "",
-      "created_at": "06/09/2024",
-      "updated_at": "06/09/2024",
-      "cart": [],
-      "like": []
-    },
-    {
-      "id": 60823631,
-      "name": "123123",
-      "email": "333@gmail.com",
-      "phone": "1111",
-      "address": "1111",
-      "password": "111",
-      "confirmPassword": "111",
       "role": false,
-      "status": false,
-      "avatar": "",
-      "created_at": "06/09/2024",
-      "updated_at": "06/09/2024",
-      "cart": [],
-      "like": []
-    },
-    {
-      "id": 61031310,
-      "name": "35",
-      "email": "55@gmail.com",
-      "phone": "5",
-      "address": "5",
-      "password": "5",
-      "confirmPassword": "5",
-      "role": false,
-      "status": false,
-      "avatar": "",
-      "created_at": "06/09/2024",
-      "updated_at": "06/09/2024",
+      "created_at": "16/9/2024",
+      "updated_at": "16/9/2024",
       "cart": [],
       "like": []
     }
@@ -116,7 +85,28 @@
       "description": "Laptop ASUS Vivobook 15 X1504ZA-NJ582W sở hữu thiết kế kim loại sang trọng với trọng lượng chỉ 1.7kg đi kèm màn hình IPS 15.6-inch FHD sắc nét. Công nghệ CPU Intel thế hệ 12, RAM DDR4 và ổ SSD M.2 PCIe Gen3 trên thiết bị đảm bảo hiệu suất mạnh mẽ. Ngoài ra, sản phẩm laptop Asus Vivobook còn có sẵn 3 loại cổng kết nối USB thuận tiện để kết nối các thiết bị lưu trữ khác nhau.",
       "created_at": "13/07/2024",
       "updated_at": "8/9/2024",
-      "sales": 2
+      "sales": 2,
+      "assess": [
+        {
+          "id": 524181,
+          "idUser": 70982177,
+          "name": "quang1",
+          "star": 5,
+          "comment": "Sản phẩm tốt, dùng thoải mái, nhẹ tiện lợi.",
+          "created_at": "16/9/2024",
+          "feedback": []
+        }
+      ],
+      "comments": [
+        {
+          "id": 448276,
+          "idUser": 70982177,
+          "name": "quang1",
+          "comment": "cho mình hỏi là quy trình mua trả góp thì như nào vậy ạ?",
+          "created_at": "16/9/2024",
+          "feedback": []
+        }
+      ]
     },
     {
       "id": 55157377,
@@ -129,7 +119,9 @@
       "created_at": "13/07/2024",
       "updated_at": "13/07/2024",
       "stock": 111,
-      "sales": 23
+      "sales": 23,
+      "assess": [],
+      "comments": []
     },
     {
       "id": 85277318,
@@ -141,7 +133,9 @@
       "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2Fdell-xps-15-9530-1.jpg?alt=media&token=89835850-f560-460f-b9aa-a17da3a1d83a",
       "description": "Tình trạng: New 100%, Fullbox\nMàu: Platinum Silver\nCPU: Intel 13th Gen Core i9-13900H (14 Core, 20 Thread, 8-E-core 4.1GHz, 6-P-core 5.4GHz, 24MB Cache)\nRAM: 32GB DDR5 4800MHz\nStorage: 1TB M.2 PCIe NVMe SSD\nMàn hình: 15.6″ 3.5K (3456X2160) OLED InfinityEdge Touch Anti-reflective 400-Nit Display\nVGA: NVIDIA GeForce RTX 4070 8GB GDDR6\nCổng kết nối: 2x ThunderBolt 4, 1 USB 3.2 Gen 2 Type-C, 1x Khe SD, Jack 3.5mm\nTrọng lượng: Từ 1.86Kg",
       "created_at": "16/07/2024",
-      "updated_at": "16/07/2024"
+      "updated_at": "16/07/2024",
+      "assess": [],
+      "comments": []
     },
     {
       "id": 58651124,
@@ -154,7 +148,9 @@
       "description": "CPU: Intel Core i5-13420H (up to 4.60 GHz, 8 nhân, 12 luồng, 12MB)\nRAM: 8GB DDR5 5200MHz (2 khe)\nỔ cứng: 512GB, PCIe, NVMe SSD (nâng cấp tối đa 2TB SSD)\nVGA: NVIDIA GeForce RTX 2050 with 4 GB of dedicated GDDR6 VRAM",
       "created_at": "16/07/2024",
       "updated_at": "16/07/2024",
-      "sales": 24
+      "sales": 24,
+      "assess": [],
+      "comments": []
     },
     {
       "id": 29279074,
@@ -167,19 +163,163 @@
       "description": "CPU: Intel Core i5-12450H (upto 4.40 GHz, 12MB)\nRAM: 8GB Soldered LPDDR5-4800 (not upgradable)\nỔ cứng: 512GB SSD M.2 2242 PCIe® 4.0x4 NVMe\nVGA: Integrated Intel® UHD Graphics",
       "created_at": "16/07/2024",
       "updated_at": "16/07/2024",
-      "sales": 13
+      "sales": 13,
+      "assess": [],
+      "comments": []
     },
     {
-      "id": 48848626,
-      "name": "123asdasdas",
-      "price": 123,
-      "stock": 123,
+      "id": 16958287,
+      "name": "Dell Precision 5510 Core i7 6th / M1000M / 15.6 inch",
+      "price": 13600000,
+      "stock": 6,
       "category": "Laptop văn phòng",
       "status": true,
-      "image": "https://firebasestorage.googleapis.com/v0/b/xuanquang-14d06.appspot.com/o/ptit-image%2F47353_laptop_acer_aspire_3_a314_42p_r3b3_nx_ksfsv_001__1_.jpg?alt=media&token=161f42fa-a0d5-4711-a6ce-1a1d54994f37",
-      "description": "123",
-      "created_at": "16/07/2024",
-      "updated_at": "16/07/2024"
+      "image": "https://ngocnguyen.vn/cdn/images/202304/goods_img/dell-precision-5510-i7-6820hq-ram-8gb-ssd-256gb-m1000m-156-inch-fhd-G3082-1681207405650.jpg",
+      "description": "Dell Precision M5510 đã viết lại định nghĩa về dòng Mobile Workstation vốn cồng kềnh và thô cứng. Mang đến một hình ảnh mới và quyến rũ cho người dùng. Đây có thể xem là chiếc máy trạm di động mỏng nhẹ nhất hiện nay mà vẫn cung cấp hiệu năng vô cùng tuyệt vời.",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 51455851,
+      "name": "Laptop MSI Modern 15 B13M 438VN | Intel i5-1335U | 8GB | 15.6 Inch FHD",
+      "price": 11700000,
+      "stock": 4,
+      "category": "Laptop văn phòng",
+      "status": true,
+      "image": "https://laptop88.vn/media/product/8802_msi_modern_15_b13m_438vn.jpg",
+      "description": "MSI Modern 15 B13M 438VN là một trong những mẫu laptop văn phòng 2024 nổi bật đến từ thương hiệu laptop MSI danh tiếng. Mẫu laptop MSI Modern 15 này không chỉ sở hữu cho mình cấu hình Intel đời cao cho hiệu năng khỏe mà còn có giá thành rất rẻ. Nếu bạn muốn tham khảo chi tiết về mẫu máy tính xách tay MSI Modern này hãy đọc ngay nội dung dưới đây nhé!",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 59816112,
+      "name": "Laptop Dell Inspiron 5440 NDY5V1 (i5 1334U/ 16GB/ 512GB SSD/ 14 inch FHD+/ Win 11/ Office/ Vỏ nhôm",
+      "price": 21490000,
+      "stock": 3,
+      "category": "Laptop văn phòng",
+      "status": true,
+      "image": "https://phucanhcdn.com/media/product/55348_laptop_dell_inspiron_5440_ndy5v1_thumb.jpg",
+      "description": "Laptop Dell Inspiron 5440 NDY5V1 sở hữu thiết kế hiện đại với màu sắc Ice Blue sang trọng. Máy có kích thước 314 x 226 x 16.49 mm và trọng lượng chỉ 1.69 kg, dễ dàng mang theo bên mình.Dell Inspiron 5440 NDY5V1 trang bị pin 4 cell, cho thời lượng sử dụng dài và hỗ trợ sạc nhanh. Với chất liệu vỏ nhôm chắc chắn và thiết kế nhẹ nhàng, đây là chiếc laptop lý tưởng cho người dùng cần một thiết bị di động và mạnh mẽ",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 36833777,
+      "name": "Laptop Dell Inspiron 3530 I5U085W11SLU (i5 1335U/ 8GB/ 512GB SSD/ 15.6 inch FHD/ Win 11/ Office/ Silver",
+      "price": 16990000,
+      "stock": 7,
+      "category": "Laptop văn phòng",
+      "status": true,
+      "image": "https://phucanhcdn.com/media/product/54929_laptop_dell_inspiron_3530_i5u085w11slu_1.jpg",
+      "description": "Laptop Dell Inspiron 3530 I5U085W11SLU sở hữu thiết kế hiện đại với màu sắc Silver sang trọng. Máy có kích thước 358 x 235 x 16.69 mm và trọng lượng chỉ 1.66 kg, dễ dàng mang theo bên mình. Với thiết kế nhẹ nhàng và chất liệu vỏ nhựa cao cấp, đây là chiếc laptop lý tưởng cho người dùng cần một thiết bị di động và mạnh mẽ",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 81681,
+      "name": "Asus Zenbook 14 OLED Q415 (2024)",
+      "price": 14690000,
+      "stock": 9,
+      "category": "Laptop văn phòng",
+      "status": true,
+      "image": "https://lapvip.vn/upload/products/thumb_800x0/asus-zenbook-14-oled-q415-2024-1713753250.jpg",
+      "description": "Asus Zenbook 14 OLED Q415 là một chiếc Ultrabook cao cấp, có ngoại hình mỏng nhẹ, sang trọng, màn hình OLED tuyệt đẹp cho hiển thị hình ảnh sắc nét, màu sắc tươi mới. Bên cạnh đó, sản phẩm này còn được trang bị bộ vi xử lý Intel Core Ultra mới nhất, đáp ứng tốt nhu cầu công việc và giải trí của người dùng. Sau một tuần sử dụng Asus Zenbook 14 OLED, đây là chiếc laptop đã giúp mình lấy lại cảm hứng với dòng Zenbook đã “cũ kỹ\" từ rất lâu rồi.",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 98268965,
+      "name": "Asus Zenbook 14 OLED Q415 (2024)",
+      "price": 14600000,
+      "stock": 6,
+      "category": "Laptop văn phòng",
+      "status": true,
+      "image": "https://laptopkhanhtran.vn/pic/product/thinkpad-_638150793581845268_HasThumb.jpg",
+      "description": "Lenovo ThinkPad X1 Carbon Gen 7 được đánh giá là một trong những dòng laptop cao cấp, với thời lượng pin tốt và hiệu suất ổn định. Với cấu hình: Core i7 8565U, RAM 16GB, SSD 256GB, Intel UHD 620, Màn hình 14 inch FHD IPS, Laptop Lenovo Thinkpad X1 Carbon gen 7 là sự lựa chọn phù hợp cho các doanh nhân hoặc những người phải làm việc trong thời gian dài. Hãy cùng Laptop Khánh Trần tìm hiểu chi tiết về sản phẩm trong bài đánh giá dưới đây.",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 55426217,
+      "name": "Laptop MSI Gaming Thin 15 B12UCX-1419VN",
+      "price": 15490000,
+      "stock": 23,
+      "category": "Laptop gaming",
+      "status": true,
+      "image": "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_d_i_3__3_3.png",
+      "description": "Vi xử lý Intel Core i5-12450H, RAM 8GB và ổ cứng SSD 512GB PCIe mang đến hiệu suất mượt mà cho các tác vụ hàng ngày, chơi game và chỉnh sửa video cơ bản.\nCard đồ họa NVIDIA GeForce RTX 2050 giúp bạn chơi game ở độ phân giải Full HD với mức thiết lập đồ họa trung bình đến cao.\nMàn hình 15.6 inch độ phân giải Full HD (1920 x 1080) cho hình ảnh rõ nét, sống động, mang đến trải nghiệm thị giác tuyệt vời.\nHệ thống tản nhiệt tiên tiến giúp duy trì nhiệt độ ổn định, đảm bảo hiệu suất hoạt động tối ưu trong thời gian dài.",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 97816776,
+      "name": "Alienware m18 R2 18 inch 2024 Core i9 14900HX RAM 32GB SSD 2TB RTX 4090 QHD+",
+      "price": 96000000,
+      "stock": 2,
+      "category": "Laptop gaming",
+      "status": true,
+      "image": "https://macstores.vn/wp-content/uploads/2024/04/alienware-m18-r2-gaming-laptop-1.jpg",
+      "description": "Tình trạng: Mới 100%, Nguyên Seal\nCPU: 14th Gen Intel® Core™i9 14900HX (24-Core, 36MB L3 Cache, up to 5.8GHz Max Turbo Frequency)\nRAM: 32 GB: 2 x 16 GB, DDR5, 5600 MT/s, non-ECC, dual-channel\nỔ cứng: 2 TB, M.2, PCIe NVMe, SSD\nVGA: NVIDIA® GeForce RTX™ 4090, 16 GB GDDR6\nMàn hình: 18″ QHD+ (2560 x 1600) 165Hz, 3ms, ComfortView Plus, NVIDIA G-SYNC + DDS, 100% DCI-P3, FHD IR Camera\nHệ điều hành: Windows 11 Pro\nTrọng lượng: 4.23 kg",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 24123912,
+      "name": "[New Outlet] Laptop Acer Nitro 5 AN515-58-57QW - Intel Core i5-12450H | RAM 16GB | Nvidia RTX 3050Ti | 15.6 Inch Full HD 144Hz",
+      "price": 16990000,
+      "stock": 3,
+      "category": "Laptop gaming",
+      "status": true,
+      "image": "https://laptop88.vn/media/product/8634_anb_57qw.jpg",
+      "description": "Acer Nitro 5 AN515 58 là một chiếc máy tính xách tay -  laptop chơi game đến từ thương hiệu laptop Acer đình đám. Mẫu laptop gaming này sở hữu con chip thế hệ thứ 12 kết hợp cùng card đồ họa RTX 3050Ti cực khỏe cho khả năng chiến game mượt mà. Hơn nữa, mẫu laptop gaming Acer này cũng được trang bị tần số quét 144Hz không độ trễ khi bạn thao tác. Hơn nữa, hệ thống tản nhiệt giúp Acer Nitro 5 hoạt động trơn tru, đảm bảo máy hoạt động ổn định.",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 78358099,
+      "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H |RTX 2050 4GB GDDR6 | 8GB | 512GB | 15.6 inch FHD | Win 11 | Obsidian Black)",
+      "price": 189990000,
+      "stock": 4,
+      "category": "Laptop gaming",
+      "status": true,
+      "image": "https://anphat.com.vn/media/product/47470_laptop_acer_gaming_nitro_v_anv15_51_58an_nh_qnasv_001.jpg",
+      "description": "",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
+    },
+    {
+      "id": 23761618,
+      "name": "Laptop Acer Gaming Nitro V ANV15-51-58AN NH.QNASV.001 (Intel Core i5-13420H |RTX 2050 4GB GDDR6 | 8GB | 512GB | 15.6 inch FHD | Win 11 | Obsidian Black)",
+      "price": 18999000,
+      "stock": 2,
+      "category": "Laptop gaming",
+      "status": true,
+      "image": "https://bizweb.dktcdn.net/thumb/grande/100/082/878/products/25649-laptop-gaming-acer-nitro-v-anv15-51-53dm-1.jpg?v=1720739106443",
+      "description": "CPU: Intel Core i5-13420H (up to 4.60 GHz, 8 nhân, 12 luồng, 12MB)\nVGA: NVIDIA GeForce RTX 2050 with 4 GB of dedicated GDDR6 VRAM\nMàn hình: 15.6 inch FHD (1920 x 1080) IPS 144Hz SlimBezel, 45% NTSC, Acer ComfyView\nRAM: 8GB DDR5 5200MHz (2 khe, tối đa 64GB)",
+      "created_at": "2024-09-16",
+      "updated_at": "16/9/2024",
+      "assess": [],
+      "comments": []
     }
   ],
   "classify": [

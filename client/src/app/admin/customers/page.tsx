@@ -8,13 +8,13 @@ import { IoMdSearch } from 'react-icons/io';
 import axios from 'axios';
 
 export default function DashboardPage() {
-    const [admin, setAdmin] = useState<User | null>(null); // Trạng thái cho quản trị viên đăng nhập
-    const [users, setUsers] = useState<User[]>([]); // Trạng thái cho danh sách người dùng
-    const [search, setSearch] = useState<string>(''); // Trạng thái cho tìm kiếm người dùng
-    const [filterRole, setFilterRole] = useState<string>(''); // Trạng thái cho lọc theo vai trò
-    const [sortOrder, setSortOrder] = useState<string>('az'); // Trạng thái cho sắp xếp tên
-    const [currentPage, setCurrentPage] = useState<number>(1); // Trạng thái cho trang hiện tại
-    const pageNumber = 5; // Số lượng người dùng mỗi trang
+    const [admin, setAdmin] = useState<User | null>(null); 
+    const [users, setUsers] = useState<User[]>([]); 
+    const [search, setSearch] = useState<string>('');
+    const [filterRole, setFilterRole] = useState<string>('');
+    const [sortOrder, setSortOrder] = useState<string>('az'); 
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const pageNumber = 5; 
     const router = useRouter();
 
     useEffect(() => {
@@ -41,7 +41,7 @@ export default function DashboardPage() {
     const filteredUsers = users
         .filter(user =>
             user.name.toLowerCase().includes(search.toLowerCase()) &&
-            (filterRole === '' || (filterRole === 'admin' ? user.role : !user.role)) // Lọc theo vai trò
+            (filterRole === '' || (filterRole === 'admin' ? user.role : !user.role)) 
         )
         .sort((a, b) => sortOrder === 'az' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name));
 

@@ -10,30 +10,30 @@ import AddCategoryForm from '../category/addCategory/page'
 export default function DashboardPage() {
     const dispatch = useDispatch();
     const categories = useSelector((state: any) => state.categoryReducer.classify);
-    const [search, setSearch] = useState<string>(''); // Trạng thái tìm kiếm
-    const [filterStatus, setFilterStatus] = useState<string>(''); // Trạng thái lọc
-    const [sortOrder, setSortOrder] = useState<string>(''); // Trạng thái sắp xếp
-    const [showForm, setShowForm] = useState(false); // Hiển thị form thêm/chỉnh sửa
-    const [selectedCategory, setSelectedCategory] = useState(null); // Lưu danh mục được chọn để chỉnh sửa
-    const [currentPage, setCurrentPage] = useState<number>(1); // Trang hiện tại
-    const categoriesPerPage = 5; // Số danh mục hiển thị mỗi trang
+    const [search, setSearch] = useState<string>('');
+    const [filterStatus, setFilterStatus] = useState<string>(''); 
+    const [sortOrder, setSortOrder] = useState<string>(''); 
+    const [showForm, setShowForm] = useState(false); 
+    const [selectedCategory, setSelectedCategory] = useState(null); 
+    const [currentPage, setCurrentPage] = useState<number>(1); 
+    const categoriesPerPage = 5;
 
     // Lấy dữ liệu khi trang được tải
     useEffect(() => {
-        dispatch(getAllCategory()); // Gọi API lấy danh mục và cập nhật vào Redux store
+        dispatch(getAllCategory());
     }, [dispatch]);
 
     // Hàm lọc và sắp xếp danh mục
     const filteredCategories = categories
         .filter((category: any) =>
-            category.name.toLowerCase().includes(search.toLowerCase()) && // Tìm kiếm theo tên
-            (filterStatus === '' || String(category.status) === filterStatus) // Lọc theo trạng thái
+            category.name.toLowerCase().includes(search.toLowerCase()) && 
+            (filterStatus === '' || String(category.status) === filterStatus) 
         )
         .sort((a: any, b: any) => {
             if (sortOrder === 'az') {
-                return a.name.localeCompare(b.name); // Sắp xếp từ A đến Z
+                return a.name.localeCompare(b.name);
             } else if (sortOrder === 'za') {
-                return b.name.localeCompare(a.name); // Sắp xếp từ Z đến A
+                return b.name.localeCompare(a.name);
             }
             return 0;
         });

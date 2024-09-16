@@ -19,14 +19,12 @@ export default function Pay() {
   const users = useSelector((state: any) => state.userReducer.users);
   const products = useSelector((state: any) => state.productReducer.products);
 
-  // State để lưu giá trị người dùng nhập
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [province, setProvince] = useState<string>("");
   const [payTo, setPayTo] = useState<string>("");
 
-  // State để kiểm tra lỗi
   const [errName, setErrName] = useState<boolean>(false);
   const [errPhone, setErrPhone] = useState<boolean>(false);
   const [errAddress, setErrAddress] = useState<boolean>(false);

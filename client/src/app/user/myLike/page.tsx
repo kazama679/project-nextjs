@@ -3,30 +3,26 @@ import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import React, { useEffect, useState } from 'react';
-import { getAllUser } from '../../../../store/reducers/userReducer';
+import { getAllUser, updateUser, updateUserCart } from '../../../../store/reducers/userReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
 export default function MyLike() {
   const dispatch = useDispatch();
-  const [userLocal, setUserLocal] = useState<any>(null); // Lưu thông tin người dùng từ localStorage
-  const users = useSelector((state: any) => state.userReducer.users); // Lấy dữ liệu người dùng từ Redux
+  const [userLocal, setUserLocal] = useState<any>(null); 
+  const users = useSelector((state: any) => state.userReducer.users);
   const router = useRouter();
 
   useEffect(() => {
-    dispatch(getAllUser()); // Lấy tất cả người dùng
-    // Lấy thông tin người dùng từ localStorage
+    dispatch(getAllUser()); 
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUserLocal(JSON.parse(storedUser)); // Lưu thông tin người dùng hiện tại
+      setUserLocal(JSON.parse(storedUser)); 
     }
   }, [dispatch]);
-
-  // Kiểm tra xem có user nào đăng nhập hay không
   if (!userLocal) {
     return <div className='text-center pt-20 text-red-500'>Vui lòng đăng nhập để xem sản phẩm yêu thích</div>;
   }
-
   // Lọc người dùng hiện tại dựa trên userLocal
   const currentUser = users.find((user: any) => user.id === userLocal.id);
 
@@ -38,6 +34,14 @@ export default function MyLike() {
   const nextCard = (id: number) => {
     router.push(`/user/card/${id}`);
   }
+
+  // xóa like
+  const deleteLike = async (item: any) => {
+    
+    const updatedLikes = currentUser.like.filter((product: any) => product.id !== item.id);
+    const updatedUser = { ...currentUser, like: updatedLikes };
+    await dispatch(updateUserCart(updatedUser));
+  };
 
   return (
     <div>
@@ -66,6 +70,7 @@ export default function MyLike() {
                 </div>
               </div>
               <div className="order-actions flex justify-end items-center mt-[-50px] gap-3">
+                <button onClick={() => deleteLike(product)} className="contact-seller-button flex py-2 px-4 rounded-md bg-red-500 text-white">Xóa</button>
                 <button className="contact-seller-button flex py-2 px-4 rounded-md bg-orange-500 text-white">Liên hệ người bán</button>
                 <button onClick={() => nextCard(product.id)} className="contact-seller-button flex py-2 px-4 rounded-md bg-green-500 text-white">Xem chi tiết sản phẩm</button>
               </div>

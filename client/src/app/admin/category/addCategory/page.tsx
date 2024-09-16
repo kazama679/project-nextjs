@@ -4,7 +4,7 @@ import { addCategory, updateCategory } from '../../../../../store/reducers/categ
 
 interface AddCategoryFormProps {
     onClose: () => void;
-    category?: any; // Dữ liệu danh mục để chỉnh sửa (nếu có)
+    category?: any; 
 }
 
 export default function AddCategoryForm({ onClose, category }: AddCategoryFormProps) {
@@ -13,14 +13,10 @@ export default function AddCategoryForm({ onClose, category }: AddCategoryFormPr
         id: category?.id || '',
         name: category?.name || '',
         description: category?.description || '',
-        status: category?.status !== undefined ? category.status : true, // Xử lý kiểu boolean cho status
+        status: category?.status !== undefined ? category.status : true, 
     });
-
-    // Xử lý thay đổi input
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        
-        // Nếu là status thì chuyển đổi giá trị từ string sang boolean
         if (name === "status") {
             setCategoryData({ ...categoryData, [name]: JSON.parse(value) });
         } else {
@@ -32,11 +28,11 @@ export default function AddCategoryForm({ onClose, category }: AddCategoryFormPr
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (category) {
-            dispatch(updateCategory(categoryData)); // Gửi dữ liệu cập nhật
+            dispatch(updateCategory(categoryData));
         } else {
-            dispatch(addCategory(categoryData)); // Gửi dữ liệu thêm mới
+            dispatch(addCategory(categoryData));
         }
-        onClose(); // Đóng form sau khi gửi
+        onClose(); 
     };
 
     return (

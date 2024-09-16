@@ -36,9 +36,8 @@ export default function Products() {
         } else {
             dispatch(addProduct(newProductData));
         }
-        setShowForm(false); // Đóng form sau khi thêm/cập nhật
+        setShowForm(false);
     };
-
 
     // Lọc sản phẩm
     const filteredProducts = products

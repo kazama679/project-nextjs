@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface ProductFormProps {
     onClose: () => void;
-    product?: any; // Dữ liệu sản phẩm để chỉnh sửa (nếu có)
-    categories: any[]; // Danh mục sản phẩm
+    product?: any;
+    categories: any[];
     onSubmit: (data: any) => void;
 }
 
@@ -12,35 +12,35 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
     const [productData, setProductData] = useState({
         id: product?.id || '',
         name: product?.name || '',
-        price: product?.price || '',
-        stock: product?.stock || '',
+        price: product?.price || 0,
+        stock: product?.stock || 0,
         category: product?.category || '',
         status: product?.status || true,
         image: product?.image || '',
         description: product?.description || '',
-        created_at: product?.created_at || new Date().toISOString().split('T')[0],  // Ngày tạo mặc định là ngày hiện tại
-        updated_at: new Date().toISOString().split('T')[0], // Ngày cập nhật mặc định là ngày hiện tại
+        created_at: product?.created_at || new Date().toISOString().split('T')[0],
+        updated_at: new Date().toISOString().split('T')[0],
+        assess: [],
+        comments: []
     });
 
     // Xử lý thay đổi input
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setProductData({ ...productData, [name]: value });
+        const newValue = (name === "price" || name === "stock") ? parseFloat(value) || 0 : value;
+        setProductData({ ...productData, [name]: newValue });
     };
 
     // Hàm xử lý submit form
     const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // Ngăn chặn hành động mặc định của form
-
-        // Kiểm tra dữ liệu có hợp lệ không
+        e.preventDefault();
         if (!productData.name || !productData.price || !productData.stock || !productData.category || !productData.image) {
             alert("Vui lòng nhập đầy đủ thông tin sản phẩm");
             return;
         }
-
-        onSubmit(productData); // Gọi hàm onSubmit với dữ liệu từ form
-        onClose(); // Đóng form sau khi thêm/cập nhật
-    };
+        onSubmit(productData);
+        onClose();
+    }
 
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
@@ -48,7 +48,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                 <button onClick={onClose} className="text-blue-500 mb-4">Back</button>
                 <h2 className="text-2xl font-bold mb-4">{product ? 'Edit Product' : 'Add Product'}</h2>
                 <form onSubmit={handleSubmitForm} className="grid grid-cols-2 gap-4">
-                    {/* Các trường form */}
                     <div className="col-span-1">
                         <label htmlFor="name" className="block text-sm font-medium">Tên sản phẩm</label>
                         <input
@@ -61,8 +60,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             required
                         />
                     </div>
-
-                    {/* Số lượng */}
                     <div className="col-span-1">
                         <label htmlFor="stock" className="block text-sm font-medium">Số lượng</label>
                         <input
@@ -75,8 +72,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             required
                         />
                     </div>
-
-                    {/* Giá */}
                     <div className="col-span-1">
                         <label htmlFor="price" className="block text-sm font-medium">Giá</label>
                         <input
@@ -89,8 +84,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             required
                         />
                     </div>
-
-                    {/* URL Ảnh */}
                     <div className="col-span-1">
                         <label htmlFor="image" className="block text-sm font-medium">URL Ảnh</label>
                         <input
@@ -108,8 +101,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             )}
                         </div>
                     </div>
-                    
-                    {/* Phân loại */}
                     <div className="col-span-1">
                         <label htmlFor="category" className="block text-sm font-medium">Phân loại</label>
                         <select
@@ -126,8 +117,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             ))}
                         </select>
                     </div>
-
-                    {/* Trạng thái */}
                     <div className="col-span-1">
                         <label htmlFor="status" className="block text-sm font-medium">Trạng thái</label>
                         <select
@@ -141,8 +130,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             <option value="Ngừng bán">Ngừng bán</option>
                         </select>
                     </div>
-
-                    {/* Chi tiết sản phẩm */}
                     <div className="col-span-2">
                         <label htmlFor="description" className="block text-sm font-medium">Chi tiết sản phẩm</label>
                         <textarea
@@ -155,7 +142,6 @@ export default function ProductForm({ onClose, product, categories, onSubmit }: 
                             placeholder="Type here"
                         />
                     </div>
-
                     <div className="col-span-2">
                         <button type="submit" className="w-full bg-purple-500 text-white py-2 rounded mt-4">
                             {product ? 'Cập nhật sản phẩm' : 'Thêm sản phẩm'}
